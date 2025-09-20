@@ -6,13 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="greeting_service" />
+        <module name="config_service" />
         <module name="demo" />
+        <module name="currency_service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config_service" options="-parameters" />
+      <module name="currency_service" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="greeting_service" options="-parameters" />
     </option>
   </component>
 </project>
