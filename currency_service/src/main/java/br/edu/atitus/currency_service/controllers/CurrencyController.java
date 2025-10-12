@@ -2,7 +2,7 @@ package br.edu.atitus.currency_service.controllers;
 
 import br.edu.atitus.currency_service.clients.CurrencyBCClient;
 import br.edu.atitus.currency_service.clients.CurrencyBCResponse;
-import br.edu.atitus.currency_service.diaUtil.CalculadoraDiaUtil;
+import br.edu.atitus.currency_service.utils.CalculadoraDiaUtil;
 import br.edu.atitus.currency_service.entities.CurrencyEntity;
 import br.edu.atitus.currency_service.repositories.CurrencyRepository;
 
@@ -19,13 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("currency")
 public class CurrencyController {
 
-    private final CurrencyRepository repository;
+//    private final CurrencyRepository repository;
     private final CurrencyBCClient currencyBCClient;
+    private final CurrencyRepository repository;
 
     public CurrencyController(CurrencyRepository repository, CurrencyBCClient currencyBCClient) {
         super();
-        this.repository = repository;
+//        this.repository = repository;
         this.currencyBCClient = currencyBCClient;
+        this.repository = repository;
     }
 
     @Value("${server.port}")
@@ -49,6 +51,8 @@ public class CurrencyController {
         target = target.toUpperCase();
         String dataSource = "None";
 
+
+
         CurrencyEntity currency = new CurrencyEntity();
         currency.setSource(source);
         currency.setTarget(target);
@@ -56,20 +60,26 @@ public class CurrencyController {
         if(source.equals(target)) {
             currency.setConversionRate(1);
         } else {
-            double curSource = 1;
-            double curTarget = 1;
-            if (!source.equals("BRL")) {
-                CurrencyBCResponse resposta = currencyBCClient.getCurrency(source, diaFormatado);
-                if (resposta.getValue().isEmpty()) throw new Exception("Currency not found for" + source);
-                curSource = resposta.getValue().getLast().getCotacaoVenda();
+            try {
+                double curSource = 1;
+                double curTarget = 1;
+                if (!source.equals("BRL")) {
+                    CurrencyBCResponse resposta = currencyBCClient.getCurrency(source, diaFormatado);
+                    if (resposta.getValue().isEmpty()) throw new Exception("Currency not found for" + source);
+                    curSource = resposta.getValue().getLast().getCotacaoVenda();
+                }
+                if (!target.equals("BRL")){
+                    CurrencyBCResponse resposta = currencyBCClient.getCurrency(target, diaFormatado);
+                    if (resposta.getValue().isEmpty()) throw new Exception("Currency not found for " + target);
+                    curTarget = resposta.getValue().getLast().getCotacaoVenda();
+                }
+                currency.setConversionRate(curSource / curTarget);
+                dataSource = "API BCB";
+            } catch (Exception e) {
+                currency = repository.findBySourceAndTarget(source, target)
+                        .orElseThrow(() -> new Exception("Currency Unsuported"));
+                dataSource = "Local Database";
             }
-            if (!target.equals("BRL")){
-                CurrencyBCResponse resposta = currencyBCClient.getCurrency(target, diaFormatado);
-                if (resposta.getValue().isEmpty()) throw new Exception("Currency not found for " + target);
-                curTarget = resposta.getValue().getLast().getCotacaoVenda();
-            }
-            currency.setConversionRate(curSource / curTarget);
-            dataSource = "API BCB";
         }
 
         currency.setConvertedValue(value * currency.getConversionRate());

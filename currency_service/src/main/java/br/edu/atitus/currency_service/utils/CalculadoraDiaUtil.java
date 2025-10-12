@@ -1,4 +1,4 @@
-package br.edu.atitus.currency_service.diaUtil;
+package br.edu.atitus.currency_service.utils;
 
 
 import java.time.LocalDate;
