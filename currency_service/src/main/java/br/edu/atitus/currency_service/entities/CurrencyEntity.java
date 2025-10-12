@@ -24,6 +24,9 @@ public class CurrencyEntity {
     @Transient
     private String environment;
 
+    @Transient
+    private String date;
+
     public double getConvertedValue() {
         return convertedValue;
     }
@@ -72,4 +75,11 @@ public class CurrencyEntity {
         this.conversionRate = conversionRate;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
