@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="greeting_service" />
+        <module name="auth-service" />
+        <module name="gateway-service" />
         <module name="product-service" />
         <module name="config_service" />
         <module name="demo" />
@@ -17,10 +19,12 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
       <module name="config_service" options="-parameters" />
       <module name="currency_service" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="greeting_service" options="-parameters" />
       <module name="product-service" options="-parameters" />
     </option>

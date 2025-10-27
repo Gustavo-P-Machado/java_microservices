@@ -11,15 +11,24 @@ public class ProductEntity {
     private Long id;
 
     private String description;
+
     private String brand;
+
     private String model;
+
     private double price;
+
     @Column(length = 3)
     private String currency; //Diz QUAL a moeda o produto está salvo
+
     private int stock;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Transient
     private String environment;
+
     @Transient
     private double convertedPrice;
 
@@ -95,5 +104,13 @@ public class ProductEntity {
 
     public void setConvertedPrice(double convertedPrice) {
         this.convertedPrice = convertedPrice;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
