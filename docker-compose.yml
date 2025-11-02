@@ -111,7 +111,7 @@ services:
     environment:
       POSTGRES_DB: db_order
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+      POSTGRES_PASSWORD: postgres
     volumes:
       - db-order-data:/var/lib/postgresql/data
     

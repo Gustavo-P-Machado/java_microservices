@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.edu.atitus</groupId>
-    <artifactId>config_service</artifactId>
+    <artifactId>config-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>config_service</name>
     <description>config_service</description>
