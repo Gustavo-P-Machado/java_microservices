@@ -1,5 +1,7 @@
 package br.edu.atitus.auth_service.dtos;
 
-public record SignupDTO(String name, String email, String password) {
+import br.edu.atitus.auth_service.entities.UserType;
+
+public record SignupDTO(String name, String email, String password, UserType type) {
 
 }

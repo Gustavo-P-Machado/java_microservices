@@ -31,11 +31,10 @@ public class WsProductController {
             @RequestBody ProductDTO dto,
             @RequestHeader("X-User-Id") Long userId,
             @RequestHeader("X-User-Email") String userEmail,
-            @RequestHeader("X-User-Type") Integer userType) throws Exception {
+            @RequestHeader("X-User-Type") String userType) throws Exception {
 
         //Somente usuários autorizados
-        //TODO - Adicionar novo tipo de usuário no AuthService para tipo de vendedor, também autorizado aqui
-        if (userType != 0) {
+        if (userType.equals("Common")) {
             throw new AuthenticationException("Usuário sem permissão");
         }
 
@@ -57,7 +56,6 @@ public class WsProductController {
             @RequestHeader("X-User-Type") Integer userType) throws Exception {
 
         //Somente usuários autorizados
-        //TODO - Adicionar novo tipo de usuário no AuthService para tipo de vendedor, também autorizado aqui
         if (userType != 0) {
             throw new AuthenticationException("Usuário sem permissão");
         }

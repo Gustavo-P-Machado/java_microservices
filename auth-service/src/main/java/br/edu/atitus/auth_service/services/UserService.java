@@ -1,5 +1,6 @@
 package br.edu.atitus.auth_service.services;
 
+import br.edu.atitus.auth_service.entities.UserType;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +31,15 @@ public class UserService implements UserDetailsService {
 		if (user.getPassword() == null || user.getPassword().isEmpty())
 			throw new Exception("Senha informada inválida");
 
+
+		if (user.getType() == null) {
+			user.setType(UserType.Common);
+		}
+
+		if (user.getType().toString().equals("Admin")) {
+			throw new Exception("Não é possível criar usuário do tipo Administrador");
+		}
+
 		if (user.getId() != null) {
 			if (userRepository.existsByEmailAndIdNot(user.getEmail(), user.getId()))
 				throw new Exception("Já existe usuário com este e-mail");
@@ -37,7 +47,7 @@ public class UserService implements UserDetailsService {
 			if (userRepository.existsByEmail(user.getEmail()))
 				throw new Exception("Já existe usuário com este e-mail");
 		}
-		// TODO validar se usuário tem permissão para o tipo escolhido
+
 	}
 
 	private void format(UserEntity user) throws Exception {

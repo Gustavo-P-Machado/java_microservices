@@ -34,8 +34,8 @@ public class UserEntity implements UserDetails{
 	@JsonIgnore
 	private String password;
 	
-	@Column
-	@Enumerated(EnumType.ORDINAL)
+	@Column(length = 50)
+	@Enumerated(EnumType.STRING)
 	private UserType type;
 
 	public Long getId() {

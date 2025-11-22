@@ -26,6 +26,10 @@ public class ProductEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(length = 50)
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
+
     @Transient
     private String environment;
 
@@ -112,5 +116,13 @@ public class ProductEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
     }
 }
