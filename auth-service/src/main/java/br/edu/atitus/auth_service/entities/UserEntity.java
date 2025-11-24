@@ -33,8 +33,14 @@ public class UserEntity implements UserDetails{
 	@Column(nullable = false)
 	@JsonIgnore
 	private String password;
-	
-	@Column(length = 50)
+
+	@Column(name = "phone_number", nullable = false)
+	private String phoneNumber;
+
+	@Column(nullable = false)
+	private String address;
+
+	@Column(length = 50, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UserType type;
 
@@ -90,7 +96,19 @@ public class UserEntity implements UserDetails{
 		return getEmail();
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-	
-	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }

@@ -31,6 +31,12 @@ public class UserService implements UserDetailsService {
 		if (user.getPassword() == null || user.getPassword().isEmpty())
 			throw new Exception("Senha informada inválida");
 
+		if(user.getPhoneNumber() == null || user.getPhoneNumber().isEmpty())
+			throw new Exception("Número de telefone inválido");
+
+		if(user.getAddress() == null || user.getAddress().isEmpty())
+			throw new Exception("Endereço Inválido");
+
 
 		if (user.getType() == null) {
 			user.setType(UserType.Common);

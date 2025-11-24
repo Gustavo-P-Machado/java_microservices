@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.naming.AuthenticationException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/ws/product")
@@ -41,11 +42,22 @@ public class WsProductController {
 
         var product = convertDtoToEntity(dto);
         product.setStock(10);
+        product.setUserId(userId);
 
         repository.save(product);
 
         return ResponseEntity.status(201).body(product);
     }
+
+    @GetMapping("/myproducts")
+    public ResponseEntity<List<ProductEntity>> getUserProductById(
+            @RequestHeader("X-User-Id") Long userId) {
+
+        List<ProductEntity> userProducts = repository.findAllByUserId(userId);
+
+        return ResponseEntity.ok(userProducts);
+    }
+
 
 
     @PutMapping("/{idProduct}")

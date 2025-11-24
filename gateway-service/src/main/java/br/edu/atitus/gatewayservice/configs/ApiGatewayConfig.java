@@ -15,6 +15,7 @@ public class ApiGatewayConfig {
                         .path("/get")
                         .filters(f -> f
                                 .addRequestHeader("X-USER-NAME", "username")
+                                
                                 .addRequestParameter("name", "fulano"))
                         .uri("http://httpbin.org:80"))
                 .route(p -> p

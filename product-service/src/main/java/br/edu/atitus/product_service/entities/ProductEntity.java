@@ -26,6 +26,9 @@ public class ProductEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     @Column(length = 50)
     @Enumerated(EnumType.STRING)
     private ProductType type;
@@ -124,5 +127,13 @@ public class ProductEntity {
 
     public void setType(ProductType type) {
         this.type = type;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
