@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.naming.AuthenticationException;
 
 @RestController
@@ -53,10 +54,10 @@ public class WsProductController {
             @RequestBody ProductDTO dto,
             @RequestHeader("X-User-Id") Long userId,
             @RequestHeader("X-User-Email") String userEmail,
-            @RequestHeader("X-User-Type") Integer userType) throws Exception {
+            @RequestHeader("X-User-Type") String userType) throws Exception {
 
         //Somente usuários autorizados
-        if (userType != 0) {
+        if (userType.equals("Common")) {
             throw new AuthenticationException("Usuário sem permissão");
         }
 
@@ -74,11 +75,11 @@ public class WsProductController {
             @PathVariable Long idProduct,
             @RequestHeader("X-User-Id") Long userId,
             @RequestHeader("X-User-Email") String userEmail,
-            @RequestHeader("X-User-Type") Integer userType) throws Exception {
+            @RequestHeader("X-User-Type") String userType) throws Exception {
 
         //Somente usuários autorizados
         //TODO - Adicionar novo tipo de usuário no AuthService para tipo de vendedor, também autorizado aqui
-        if (userType != 0) {
+        if (userType.equals("Common")) {
             throw new AuthenticationException("Usuário sem permissão");
         }
 

@@ -1,0 +1,4 @@
+UPDATE tb_product SET image_url = 'https://i.guim.co.uk/img/media/18badfc0b64b09f917fd14bbe47d73fd92feeb27/189_335_5080_3048/master/5080.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1562112c7a64da36ae0a5e75075a0d12' WHERE model = 'iPhone 15 256GB';
+UPDATE tb_product SET image_url = 'https://i.zst.com.br/thumbs/12/3c/34/-1360157548.jpg' WHERE model = 'Moto G85 256GB';
+UPDATE tb_product SET image_url = 'https://dcdn-us.mitiendanube.com/stores/001/860/672/products/13c-azul-5476b57f744d2fcf0e17006730901441-640-0.jpg' WHERE model = 'Redmi 13C 256GB';
+UPDATE tb_product SET image_url = 'https://a-static.mlcdn.com.br/%7Bw%7Dx%7Bh%7D/smartphone-samsung-galaxy-s23-ultra-512gb-creme-5g-12gb-ram-68-cam-quadrupla-selfie-12mp/magazineluiza/232855500/91dada59e772cc482d6f58ddcb268270.jpg' WHERE model = 'S23 Ultra 256GB';

@@ -10,5 +10,6 @@ public enum ProductType {
     COOLER,
     POWER_SUPPLY,
     CASE,
-    PERIPHERAL;
+    PERIPHERAL,
+    OTHER;
 }
